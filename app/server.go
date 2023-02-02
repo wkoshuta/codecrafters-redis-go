@@ -26,17 +26,17 @@ func main() {
 	defer conn.Close()
 	
 	req := make([]byte, 1024)
-	n, err := conn.Read(req)
+	_, err = conn.Read(req)
 	if err != nil {
 		fmt.Println("Error reading from connection: " , err.Error())
 		os.Exit(1)
 	}
-	fmt.Printf("Read %d bytes from connection: %s\n", n, string(req))
+	// fmt.Printf("Read %d bytes from connection: %s\n", n, string(req))
 
-	n, err = conn.Write([]byte("+PONG\r\n"))
+	_, err = conn.Write([]byte("+PONG\r\n"))
 	if err != nil {
 		fmt.Println("Error writing to connection: " , err.Error())
 		os.Exit(1)
 	}
-	fmt.Printf("Wrote %d bytes to connection\n", n)
+	// fmt.Printf("Wrote %d bytes to connection\n", n)
 }
